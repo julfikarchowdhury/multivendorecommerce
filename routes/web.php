@@ -62,6 +62,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //attributes
         Route::match(['get','post'],'add-edit-attributes/{id}','ProductsController@addAttributes');
         Route::match(['get','post'],'update-attributes/{id}','ProductsController@updateAttributes');
+        //banners
+        Route::get('banners','BannersController@banners');
+        Route::get('delete-banner/{id}','BannersController@deleteBanners');
+        Route::match(['get','post'],'add-edit-banner/{id?}','BannersController@addEditBanner');
+
+
 
     });
 }); 
@@ -70,4 +76,5 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 //userdashboard
 Route::namespace('App\Http\Controllers\Front')->group(function () {
     Route::get('/','IndexController@Index');
+    
 });

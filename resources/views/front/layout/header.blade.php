@@ -269,7 +269,7 @@
                 <div class="col-lg-9">
                     <ul class="bottom-nav g-nav u-d-none-lg">
                         <li>
-                            <a href="listing-without-filters.html">New Arrivals
+                            <a href="/new">New Arrivals
                                 <span class="superscript-label-new">NEW</span>
                             </a>
                         </li>
@@ -298,7 +298,7 @@
                                         <a href="about.html" class="u-c-brand">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="contact.html">Contact Us</a>
+                                        <a href="/contact">Contact Us</a>
                                     </li>
                                     <li>
                                         <a href="faq.html">FAQ</a>

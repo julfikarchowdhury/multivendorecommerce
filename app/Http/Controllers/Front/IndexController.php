@@ -15,4 +15,5 @@ class IndexController extends Controller
 
         return view('front.index')->with(compact('sections'));
     }
+   
 }
