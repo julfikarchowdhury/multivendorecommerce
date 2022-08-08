@@ -86,7 +86,7 @@
               </a>
               <div class="collapse" id="ui-banner">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{url('admin/banners')}}">Slider Banners</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{url('admin/banners')}}">Home Page Banners</a></li>
                 </ul>
               </div>
             </li>

@@ -17,4 +17,24 @@ class Product extends Model
     public function attributes(){
         return $this->hasMany('App\Models\ProductsAttribute');
     }
+    public static function getDiscountPrice($product_id){
+        $proDetails = Product::select('product_price','product_discount','catagory_id')->where('id',$product_id)->first();
+        $proDetails = json_decode(json_encode($proDetails),true);
+
+        $catDetails = Catagory::select('catagory_discount')->where('id',$proDetails['catagory_id'])->first();
+        $catDetails = json_decode(json_encode($catDetails),true);
+
+        if($proDetails['product_discount']>0){
+            
+            $discounted_price = $proDetails['product_price'] - ($proDetails['product_price']*$proDetails['product_discount']/100);
+
+        }else if($catDetails['catagory_discount']>0){
+
+            $discounted_price = $proDetails['product_price'] - ($proDetails['product_price']*$catDetails['catagory_discount']/100);
+
+        }else{
+            $discounted_price = 0;
+        }
+        return $discounted_price;
+    }
 }

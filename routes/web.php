@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndexController;
-
+use App\Models\catagory;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,5 +76,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 //userdashboard
 Route::namespace('App\Http\Controllers\Front')->group(function () {
     Route::get('/','IndexController@Index');
+    
+    //listing catagories route
+    $catUrls = Catagory::select('url')->where('status',1)->get()->pluck('url')->toArray();
+
+    foreach ($catUrls as $key =>$url) {
+        Route::get('/'.$url,'ProductsController@listing');
+    }
     
 });

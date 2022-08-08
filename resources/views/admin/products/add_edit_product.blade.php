@@ -144,6 +144,11 @@
                                 name="is_featured" @if(!empty($product['is_featured']) && $product['is_featured']=="Yes") checked=""  @endif>
                             </div>
                             <div class="form-group">
+                                <label for="is_featured" >Is Best Seller</label>
+                                <input type="checkbox"  id="is_bestseller" value="yes" 
+                                name="is_bestseller" @if(!empty($product['is_bestseller']) && $product['is_bestseller']=="Yes") checked=""  @endif>
+                            </div>
+                            <div class="form-group">
                                 <label for="status" >Status</label>
                                 <input type="number" class="form-control" id="status" placeholder="Enter status "
                                 name="status" @if(!empty($product['status'])) value="{{ $product['status'] }}" 

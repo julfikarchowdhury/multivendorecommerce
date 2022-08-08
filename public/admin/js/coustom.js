@@ -15,7 +15,8 @@ $(document).ready(function(){
     //         return false;
     //     }
     // })
-    $(".confirmDelete").click(function(){
+    // $(".confirmDelete").click(function(){
+    $(document).on("click",".confirmDelete",function(){
         var module = $(this).attr('module');
         var moduleid = $(this).attr('moduleid');
         Swal.fire({

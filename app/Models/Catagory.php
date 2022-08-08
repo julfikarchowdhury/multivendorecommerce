@@ -17,4 +17,15 @@ class Catagory extends Model
     public function subcatagories(){
         return $this->hasMany('App\Models\Catagory','parent_id')->where('status',1);
     }
+    public static function catagoryDetails($url){
+        $catagoryDetails = Catagory::select('id','catagory_name','url')->with('subcatagories')->where('url',$url)->first()->toArray();
+
+        $catIds = array();
+        $catIds[] = $catagoryDetails['id'];
+        foreach ($catagoryDetails['subcatagories'] as $key => $subcat){
+            $catIds[] = $subcat['id'];
+        }
+        $resp = array('catIds'=>$catIds,'catagorydetails'=>$catagoryDetails);
+        return $resp;
+    }
 }

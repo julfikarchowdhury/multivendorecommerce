@@ -1,4 +1,7 @@
-
+<?php
+use App\Models\Section;
+$sections = Section::sections();
+?>
 <header>
     <!-- Top-Header -->
     <div class="full-layer-outer-header">
@@ -104,8 +107,8 @@
                                     <option selected="selected" value="">
                                         All
                                     </option>
-                                    @foreach ($sections as $section)
-                                    <option value="">{{$section['name']}}</option>
+                                    @foreach($sections as $section)
+                                                                        <option value="">{{$section['name']}}</option>
                                     @endforeach
                                 </select>
                             </div>

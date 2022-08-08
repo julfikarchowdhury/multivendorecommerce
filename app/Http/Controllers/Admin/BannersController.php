@@ -37,13 +37,17 @@ class BannersController extends Controller
             $message = "Banner updeted successfully!";
         }
         if($request->isMethod('post')){
-            $image = $request->image;
-
-            $name = $image->getClientOriginalName();
-            $image->storeAs('public/front/images/banner-images',$name);
-            $banner = new BannerImage;
-            $banner->image = $name;
+            
+            if ($request->hasFile('image')){
+                $image = $request->image;
+                $name = $image->getClientOriginalName();
+                $image->storeAs('public/front/images/banner-images',$name);
+                $banner = new BannerImage;
+                $banner->image = $name;
+            }
             $data = $request->all();
+            $banner->type = $data['type'];;
+
             $banner->link = $data['link'];;
             $banner->title = $data['title'];;
             $banner->alt = $data['alt'];;

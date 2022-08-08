@@ -29,6 +29,9 @@
                             Image
                         </th>
                         <th style="text-align:center">
+                            Type
+                        </th>
+                        <th style="text-align:center">
                             Link
                         </th>
                         <th style="text-align:center">
@@ -45,7 +48,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                      @foreach($banners as $key => $banner;$key=1)
+                      @foreach($banners as $key => $banner)
                         
                         <tr>
                             <td style="padding:5px; text-align:center">
@@ -53,6 +56,9 @@
                             </td>
                             <td style="padding:5px; text-align:center">
                             <img  src="{{ asset('storage/front/images/banner-images/'.$banner['image'])}}">
+                            </td>
+                            <td style="padding:5px; text-align:center">
+                            {{ $banner['type'] }}
                             </td>
                             <td style="padding:5px; text-align:center">
                             {{ $banner['link'] }}

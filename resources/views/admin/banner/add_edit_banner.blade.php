@@ -54,7 +54,16 @@
                                     moduleid="{{$banner['id'] }}">Delete Image</a>
                                 @endif
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="catagory_image" >Image Link</label>
+                                <select class="form-control" id="type" name="type" required="">
+                                  <option value="">Select</option>
+                                  <option @if(!empty($banner['type'])&& $banner['type']=="Slider") 
+                                  selected="" @endif value="Slider">Slider</option>
+                                  <option @if(!empty($banner['type'])&& $banner['type']=="Fix") 
+                                  selected="" @endif value="Fix">Fix</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="catagory_image" >Image Link</label>
                                 <input type="text" name="link" id="link" class="form-control" placeholder="Enter link"
