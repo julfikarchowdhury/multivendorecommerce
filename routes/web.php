@@ -62,6 +62,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //attributes
         Route::match(['get','post'],'add-edit-attributes/{id}','ProductsController@addAttributes');
         Route::match(['get','post'],'update-attributes/{id}','ProductsController@updateAttributes');
+        //filter
+        Route::get('filters','FilterController@filters');
+        Route::get('filter-value','FilterController@filterValue');
+
         //banners
         Route::get('banners','BannersController@banners');
         Route::get('delete-banner/{id}','BannersController@deleteBanners');
@@ -81,7 +85,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     $catUrls = Catagory::select('url')->where('status',1)->get()->pluck('url')->toArray();
 
     foreach ($catUrls as $key =>$url) {
-        Route::get('/'.$url,'ProductsController@listing');
+        Route::match(['get','post'],'/'.$url,'ProductsController@listing');
     }
     
 });

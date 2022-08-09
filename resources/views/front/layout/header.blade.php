@@ -224,7 +224,7 @@ $sections = Section::sections();
                                 <ul class="v-list animated fadeIn">
                                     @foreach($sections as $section)
                                     <li class="js-backdrop">
-                                        <a href="shop-v1-root-category.html">
+                                        <a href="#">
                                             <i class="ion-ios-add-circle"></i>
                                             {{ $section['name']}}
                                             <i class="ion ion-ios-arrow-forward"></i>
@@ -238,12 +238,12 @@ $sections = Section::sections();
                                                 <div class="col-lg-4">
                                                     <ul class="v-level-2">
                                                         <li>
-                                                            <a href="listing.html">{{$catagory['catagory_name']}}</a>
+                                                            <a href="{{ $catagory['url']}}">{{$catagory['catagory_name']}}</a>
                                                             <ul>
                                                                @foreach($catagory['subcatagories'] as $subcatagory)
 
                                                                 <li>
-                                                                    <a href="shop-v3-sub-sub-category.html">{{$subcatagory['catagory_name']}}</a>
+                                                                    <a href="{{ $subcatagory['url']}}">{{$subcatagory['catagory_name']}}</a>
                                                                 </li>
                                                                @endforeach
                                                             </ul>

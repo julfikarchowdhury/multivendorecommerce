@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="description" content="">
     <meta name="author" content="">
     <title>The Chowdhury's Mart</title>
@@ -123,5 +125,7 @@ ga('send', 'pageview')
 <script type="text/javascript" src="{{ url('front/js/owl.carousel.min.js') }}"></script>
 <!-- Main -->
 <script type="text/javascript" src="{{ url('front/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ url('front/js/coustom.js') }}"></script>
+
 </body>
 </html>

@@ -14,6 +14,9 @@ class Product extends Model
     public function catagory(){
         return $this->belongsTo('App\Models\Catagory','catagory_id');
     }
+    public function brand(){
+        return $this->belongsTo('App\Models\Brand','brand_id');
+    }
     public function attributes(){
         return $this->hasMany('App\Models\ProductsAttribute');
     }
@@ -26,15 +29,25 @@ class Product extends Model
 
         if($proDetails['product_discount']>0){
             
-            $discounted_price = $proDetails['product_price'] - ($proDetails['product_price']*$proDetails['product_discount']/100);
+            $discounted_price = round($proDetails['product_price'] - ($proDetails['product_price']*$proDetails['product_discount']/100));
 
         }else if($catDetails['catagory_discount']>0){
 
-            $discounted_price = $proDetails['product_price'] - ($proDetails['product_price']*$catDetails['catagory_discount']/100);
+            $discounted_price = round($proDetails['product_price'] - ($proDetails['product_price']*$catDetails['catagory_discount']/100));
 
         }else{
             $discounted_price = 0;
         }
         return $discounted_price;
+    }
+    public static function isProductnew($product_id){
+        $productIds = Product::select('id')->where('status',1)->orderby('id','Desc')->limit(4)->pluck('id');
+        $productIds = json_decode(json_encode($productIds),true);
+        if(in_array($product_id,$productIds)){
+            $isProductnew = "Yes";
+        }else{
+            $isProductnew = "No";
+        }
+        return $isProductnew;
     }
 }

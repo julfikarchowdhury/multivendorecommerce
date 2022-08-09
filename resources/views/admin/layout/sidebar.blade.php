@@ -62,6 +62,7 @@
                   <li class="nav-item"> <a class="nav-link" href="{{url('admin/catagories')}}">Catagories</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('admin/brands')}}">Brands</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{url('admin/products')}}">Products</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{url('admin/filters')}}">Filters</a></li>
                 </ul>
               </div>
             </li>     

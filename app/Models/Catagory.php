@@ -18,14 +18,28 @@ class Catagory extends Model
         return $this->hasMany('App\Models\Catagory','parent_id')->where('status',1);
     }
     public static function catagoryDetails($url){
-        $catagoryDetails = Catagory::select('id','catagory_name','url')->with('subcatagories')->where('url',$url)->first()->toArray();
-
+        $catagoryDetails = Catagory::select('id','parent_id','catagory_name','url','description')->with(['subcatagories'=>function($query){
+            $query->select('id','parent_id','catagory_name','url','description');
+        }])->where('url',$url)->first()->toArray();
+        // dd($catagoryDetails);
         $catIds = array();
         $catIds[] = $catagoryDetails['id'];
+
+        if($catagoryDetails['parent_id']==0){
+            $breadcrumbs = '<li class="is-marked">
+            <a href="'.url($catagoryDetails['url']).'">'.$catagoryDetails['catagory_name'].'</a></li>';
+        }else{
+            $parentCatagory = Catagory::select('catagory_name','url')->where('id',$catagoryDetails['parent_id'])->first()->toArray();
+            $breadcrumbs='<li class="is-marked">
+            <a href="'.url($parentCatagory['url']).'">'.$parentCatagory['catagory_name'].'</a></li>
+            <li class="is-marked">
+            <a href="'.url($catagoryDetails['url']).'">/ '.$catagoryDetails['catagory_name'].'</a>
+            </li>';
+        }
         foreach ($catagoryDetails['subcatagories'] as $key => $subcat){
             $catIds[] = $subcat['id'];
         }
-        $resp = array('catIds'=>$catIds,'catagorydetails'=>$catagoryDetails);
+        $resp = array('catIds'=>$catIds,'catagorydetails'=>$catagoryDetails,'breadcrumbs'=>$breadcrumbs);
         return $resp;
     }
 }

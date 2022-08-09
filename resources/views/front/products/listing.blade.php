@@ -1,3 +1,5 @@
+<?php use App\Models\Product; ?>
+
 @extends('front.layout.layout')
 @section('content')
 <!-- Page Introduction Wrapper -->
@@ -25,14 +27,9 @@
         <div class="shop-intro">
             <ul class="bread-crumb">
                 <li class="has-separator">
-                    <a href="index.html">Home</a>
+                    <a href="{{ url('/')}}">Home</a>
                 </li>
-                <li class="has-separator">
-                    <a href="shop-v1-root-category.html">Men Clothing </a>
-                </li>
-                <li class="is-marked">
-                    <a href="listing.html">T-Shirts</a>
-                </li>
+                <?php echo $catagoryDetails['breadcrumbs']; ?>
             </ul>
         </div>
         <!-- Shop-Intro /- -->
@@ -44,30 +41,40 @@
             <div class="col-lg-9 col-md-9 col-sm-12">
                 <!-- Page-Bar -->
                 <div class="page-bar clearfix">
-                    <div class="shop-settings">
+                    <!-- <div class="shop-settings">
                         <a id="list-anchor" >
                             <i class="fas fa-th-list"></i>
                         </a>
                         <a id="grid-anchor" class="active">
                             <i class="fas fa-th"></i>
                         </a>
-                    </div>
+                    </div> -->
                     <!-- Toolbar Sorter 1  -->
-                    <div class="toolbar-sorter">
-                        <div class="select-box-wrapper">
-                            <label class="sr-only" for="sort-by">Sort By</label>
-                            <select class="select-box" id="sort-by">
-                                <option selected="selected" value="">Sort By: Best Selling</option>
-                                <option value="">Sort By: Latest</option>
-                                <option value="">Sort By: Lowest Price</option>
-                                <option value="">Sort By: Highest Price</option>
-                                <option value="">Sort By: Best Rating</option>
-                            </select>
-                        </div>
+                    <form name="sortProducts" id="sortProducts">
+                        <input type="hidden" name="url" id="url" value="{{ $url}}">
+                        <div class="toolbar-sorter">
+                            <div class="select-box-wrapper">
+                                <label class="sr-only" for="sort-by">Sort By</label>
+                                <select name="sort" id="sort" class="select-box">
+                                    <option  value="">Select</option>
+                                    <option value="product_latest" @if(isset($_GET['sort']) && 
+                                    $_GET['sort']=="product_latest") selected="" @endif>Sort By: Latest</option>
+                                    <option value="product_lowest" @if(isset($_GET['sort']) && 
+                                    $_GET['sort']=="product_lowest") selected="" @endif>Sort By: Lowest Price</option>
+                                    <option value="product_highest" @if(isset($_GET['sort']) && 
+                                    $_GET['sort']=="product_highest") selected="" @endif>Sort By: Highest Price</option>
+                                    <option value="name_a_z" @if(isset($_GET['sort']) && 
+                                    $_GET['sort']=="name_a_z") selected="" @endif>Sort By: Name A - Z</option>
+                                    <option value="name_z_a" @if(isset($_GET['sort']) && 
+                                    $_GET['sort']=="name_z_a") selected="" @endif>Sort By: Name Z - A</option>
+
+                                </select>
+                            </div>
                     </div>
+                    </form>
                     <!-- //end Toolbar Sorter 1  -->
                     <!-- Toolbar Sorter 2  -->
-                    <div class="toolbar-sorter-2">
+                    <!-- <div class="toolbar-sorter-2">
                         <div class="select-box-wrapper">
                             <label class="sr-only" for="show-records">Show Records Per Page</label>
                             <select class="select-box" id="show-records">
@@ -76,69 +83,31 @@
                                 <option value="">Show: 28</option>
                             </select>
                         </div>
+                    </div> -->
+                    <div class="toolbar-sorter-2">
+                        <div class="select-box-wrapper">
+                            <label class="sr-only" for="show-records">Show Records Per Page</label>
+                            <select class="select-box" id="show-records">
+                                <option selected="selected" value="">Showing:{{ count($catagoryProducts)}} </option>
+                                
+                            </select>
+                        </div>
                     </div>
                     <!-- //end Toolbar Sorter 2  -->
                 </div>
                 <!-- Page-Bar /- -->
                 <!-- Row-of-Product-Container -->
-                <div class="row product-container list-style">
-                    @foreach($catagoryProducts as $product)
-                    <div class="product-item col-lg-4 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="image-container">
-                                <a class="item-img-wrapper-link" href="single-product.html">
-                                    <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                </a>
-                                <div class="item-action-behaviors">
-                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                    <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="item-content">
-                                <div class="what-product-is">
-                                    <ul class="bread-crumb">
-                                        <li class="has-separator">
-                                            <a href="shop-v1-root-category.html">Product Code</a>
-                                        </li>
-                                        <li class="has-separator">
-                                            <a href="listing.html">Tops</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                        </li>
-                                    </ul>
-                                    <h6 class="item-title">
-                                        <a href="single-product.html">Product Name</a>
-                                    </h6>
-                                    <div class="item-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        </p>
-                                    </div>
-                                    <div class="item-stars">
-                                        <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                            <span style='width:67px'></span>
-                                        </div>
-                                        <span>(23)</span>
-                                    </div>
-                                </div>
-                                <div class="price-template">
-                                    <div class="item-new-price">
-                                        $100.00
-                                    </div>
-                                    <div class="item-old-price">
-                                        $120.00
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tag new">
-                                <span>NEW</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                <div class="filter_products">
+                    @include('front.products.ajax_filter_listing')
                 </div>
+                @if(isset($_GET['sort']))
+                    <div style="text-align:center;padding: 10px;"><b>{{ $catagoryProducts->appends(['sort'=>$_GET['sort']])->links() }}</div>
+
+                @else
+                <div style="text-align:center;padding: 10px;"><b>{{ $catagoryProducts->links() }}</div>
+                @endif
+                <div style="padding: 10px;">
+                {{ $catagoryDetails['catagorydetails']['description'] }}</div>
                 <!-- Row-of-Product-Container /- -->
             </div>
             <!-- Shop-Right-Wrapper /- -->
