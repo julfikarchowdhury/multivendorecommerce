@@ -57,12 +57,12 @@
                     <div class="tab-content">
                         <div class="tab-pane active show fade" id="men-latest-products">
                             <div class="slider-fouc">
-                                <div class="products-slider owl-carousel" data-item="4">
+                                <div class="products-slider owl-carousel"  data-item="4">
                                     @foreach($newProducts as $product)
                                     <div class="item">
-                                        <div class="image-container">
+                                        <div class="image-container" style="height:230px; width:230px;">
                                             <a class="item-img-wrapper-link" href="{{ url('product/'.$product['id']) }}">
-                                                <img class="img-fluid" src="{{ asset('storage/front/images/banner-images/'.$product['product_image'])}}" alt="Product">
+                                                <img src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}" alt="Product">
                                             </a>
                                             <div class="item-action-behaviors">
                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
@@ -120,9 +120,9 @@
                                 <div class="products-slider owl-carousel" data-item="4">
                                 @foreach($bestSellerProducts as $product)
                                     <div class="item">
-                                        <div class="image-container">
+                                        <div class="image-container"  style="height:230px; width:230px;">
                                             <a class="item-img-wrapper-link" href="{{ url('product/'.$product['id']) }}">
-                                                <img class="img-fluid" src="{{ asset('storage/front/images/banner-images/'.$product['product_image'])}}" alt="Product">
+                                                <img  src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}" alt="Product">
                                             </a>
                                             <div class="item-action-behaviors">
                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
@@ -181,9 +181,9 @@
                                 <div class="products-slider owl-carousel" data-item="4">
                                 @foreach($discountedProducts as $product)
                                     <div class="item">
-                                        <div class="image-container">
+                                        <div class="image-container"  style="height:230px; width:230px;">
                                             <a class="item-img-wrapper-link" href="{{ url('product/'.$product['id']) }}">
-                                                <img class="img-fluid" src="{{ asset('storage/front/images/banner-images/'.$product['product_image'])}}" alt="Product">
+                                                <img  src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}" alt="Product">
                                             </a>
                                             <div class="item-action-behaviors">
                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
@@ -241,9 +241,9 @@
                                 <div class="products-slider owl-carousel" data-item="4">
                                 @foreach($featuredProducts as $product)
                                     <div class="item">
-                                        <div class="image-container">
+                                        <div class="image-container"  style="height:230px; width:230px;">
                                             <a class="item-img-wrapper-link" href="{{ url('product/'.$product['id']) }}">
-                                                <img class="img-fluid" src="{{ asset('storage/front/images/banner-images/'.$product['product_image'])}}" alt="Product">
+                                                <img  src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}" alt="Product">
                                             </a>
                                             <div class="item-action-behaviors">
                                                 <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look

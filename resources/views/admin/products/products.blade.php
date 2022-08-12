@@ -29,6 +29,9 @@
                             Product Name
                         </th>
                         <th style="text-align:center">
+                            Product Image
+                        </th>
+                        <th style="text-align:center">
                             Product Code
                         </th>
                         <th style="text-align:center">
@@ -61,7 +64,9 @@
                             <td style="padding:5px; text-align:center">
                             {{ $product['product_name']}}
                             </td>
-                            
+                            <td style="padding:5px; text-align:center">
+                            <img  src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}">
+                            </td>
                             <td style="padding:5px; text-align:center">
                             {{ $product['product_code']}}
                             </td>

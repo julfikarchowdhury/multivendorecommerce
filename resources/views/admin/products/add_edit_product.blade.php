@@ -31,14 +31,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 style="text-align:center; padding-bottom: 20px; text-decoration: underline;" ><b>{{ $title }}</b> </h3>
-                        @if (session('status'))
+                        @if (session('success_message'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong> {{ session('status')}}</strong> 
+                                        <strong> {{ session('success_message')}}</strong> 
                                     </div>
                             @endif    
                         <form class="forms-sample" @if(empty($catagory['id'])) action="{{ url('admin/add-edit-product') }}"
                             @else action="{{ url('admin/add-edit-product/'.$product['id']) }}" @endif
-                            method="post" enctype="multipart/form">@csrf
+                            method="post" enctype="multipart/form-data">@csrf
                             
                             <div class="form-group">
                                 <label for="catagory_id" >Select Catagory</label>
@@ -104,9 +104,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="product_image" >Product Image</label>
-                                <input type="file" name="product_image" id="product_image" class="form-control"
+                                <input type="file" class="form-control" id="product_image"
+                                name="product_image"
                                 @if(!empty($product['product_image'])) value="{{ $product['product_image'] }}" 
                                 @else value="" @endif>
+                                @if(!empty($product['product_image']))
+                                    <img style="height:50px; width:50px;" src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}">&nbsp; &nbsp;
+                                    <a href="javascript:void(0)" class="confirmDelete" module="product-image" 
+                                    moduleid="{{$product['id'] }}">Delete Image</a>
+                                @endif
+                                <!-- <input type="file" class="form-control" id="image"
+                                name="image" @if(!empty($banner['image'])) value="{{ $banner['image'] }}"
+                                 @else value=""  @endif> -->
                             </div>
                             <div class="form-group">
                                 <label for="product_video" >Product Video</label>

@@ -26,6 +26,19 @@ class BannersController extends Controller
         $message = "Banner deleted successfully";
         return redirect('admin/banners')->with('success_message',$message);
     }
+    public function deleteBannersImage($id){
+        BannerImage::where('id',$id)->update(['image' => null]);
+
+        // $banner_image_path = 'public/front/images/banner-images/';
+
+        // if(file_exists($banner_image_path.$bannerImage->image)){
+        //     unlink($banner_image_path.$bannerImage->image);
+        // }
+        $message = "Banner image deleted successfully";
+
+        return redirect()->back()->with('success_message',$message);
+
+    }
     public function addEditBanner(Request $request,$id=null){
         if($id==""){
             $title = "Add Banner";
@@ -42,16 +55,15 @@ class BannersController extends Controller
                 $image = $request->image;
                 $name = $image->getClientOriginalName();
                 $image->storeAs('public/front/images/banner-images',$name);
-                $banner = new BannerImage;
+                // $banner = new BannerImage;
                 $banner->image = $name;
             }
-            $data = $request->all();
-            $banner->type = $data['type'];;
+            $banner->type = $request->type;
 
-            $banner->link = $data['link'];;
-            $banner->title = $data['title'];;
-            $banner->alt = $data['alt'];;
-            $banner->status = $data['status'];;
+            $banner->link = $request->link;;
+            $banner->title = $request->title;;
+            $banner->alt = $request->alt;;
+            $banner->status = $request->status;;
 
             $banner->save();
 

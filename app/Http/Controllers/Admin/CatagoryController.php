@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Catagory;
 use App\Models\Section;
+use App\Models\Image;
 
 class CatagoryController extends Controller
 {
@@ -29,12 +30,25 @@ class CatagoryController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             $catagory->catagory_name = $data['catagory_name'];
+            if ($request->hasFile('catagory_image')){
+                // dd($request->catagory_image);
+
+                $image = $request->catagory_image;
+                $name = $image->getClientOriginalName();
+                // dd($name);
+
+                $image->storeAs('public/admin/images/catagory-images',$name);
+                // $banner = new BannerImage;
+                $catagory->catagory_image = $name;
+
+            }
+                // dd($catagory->catagory_image);
+
             $catagory->section_id = $data['section_id'];
             $catagory->parent_id = $data['parent_id'];
             $catagory->catagory_discount = $data['catagory_discount'];
             $catagory->description = $data['description'];
             $catagory->url = $data['url'];
-            $catagory->catagory_image = "";
             $catagory->meta_title = $data['meta_title'];
             $catagory->meta_description = $data['meta_description'];
             $catagory->meta_keywords = $data['meta_keywords'];
@@ -64,6 +78,14 @@ class CatagoryController extends Controller
             $message = "Catagory has been deleted successfully!";
             return redirect()->back()->with('success_message',$message);
     
+    }
+    public function deleteCatagoryImage($id){
+        Catagory::where('id',$id)->update(['catagory_image' => null]);
+        
+        $message = "Catagory Image deleted successfully";
+
+        return redirect()->back()->with('success_message',$message);
+
     }
     // public function(){
         

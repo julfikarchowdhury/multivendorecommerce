@@ -42,4 +42,8 @@ class Catagory extends Model
         $resp = array('catIds'=>$catIds,'catagorydetails'=>$catagoryDetails,'breadcrumbs'=>$breadcrumbs);
         return $resp;
     }
+    public static function getCatagoryName($catagory_id){
+        $getCatagoryName = Catagory::select('catagory_name')->where('id',$catagory_id)->first();
+        return $getCatagoryName->catagory_name;
+    }
 }

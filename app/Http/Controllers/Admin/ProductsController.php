@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Section;
 use App\Models\Brand;
 use App\Models\Catagory;
+use App\Models\Image;
+
 use App\Models\ProductsAttribute;
 
 use Auth;
@@ -48,6 +50,15 @@ class ProductsController extends Controller
                 $product->vendor_id = $vendor_id;
             }else{
                 $product->vendor_id = 0;
+            }
+            if ($request->hasFile('product_image')){
+                $image = $request->product_image;
+                $name = $image->getClientOriginalName();
+                // dd($name);
+
+                $image->storeAs('public/admin/images/product-images',$name);
+                // $banner = new BannerImage;
+                $product->product_image = $name;
             }
             $product->product_name = $data['product_name'];
             $product->product_color = $data['product_color'];
@@ -91,6 +102,14 @@ class ProductsController extends Controller
             $message = "Product has been deleted successfully!";
             return redirect()->back()->with('success_message',$message);
     
+    }
+    public function deleteProductImage($id){
+        Product::where('id',$id)->update(['product_image' => null]);
+        
+        $message = "Catagory Image deleted successfully";
+
+        return redirect()->back()->with('success_message',$message);
+
     }
     public function addAttributes(Request $request,$id){
         $product=Product::select('id','product_name','product_code','product_color','product_price','product_image')->with('attributes')->find($id);

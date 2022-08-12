@@ -27,15 +27,15 @@
               </div>
             </div>
           </div>
-            <div class="col-md-4 grid-margin stretch-card">
+            <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h3 style="text-align:center; padding-bottom: 20px; text-decoration: underline;" ><b>{{ $title }}</b> </h3>
-                        @if (session('status'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong> {{ session('status')}}</strong> 
-                                    </div>
-                            @endif    
+                        @if (session('success_message'))
+                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong> {{ session('success_message')}}</strong> 
+                          </div>
+                        @endif  
                         <form class="forms-sample" @if(empty($banner['id'])) action="{{ url('admin/add-edit-banner') }}"
                             @else action="{{ url('admin/add-edit-banner/'.$banner['id']) }}" @endif
                             method="post" enctype="multipart/form-data">@csrf

@@ -1,3 +1,5 @@
+<?php use App\Models\ProductsFilter;
+?>
 @extends('admin.layout.layouts')
 
 @section('content')
@@ -55,7 +57,9 @@
                             {{ $filtersValue['filter_id']}}
                             </td>
                             <td style="padding:5px; text-align:center">
-                            {{ $filtersValue['filter_id']}}
+                            <?php
+                               echo $catagory_name = ProductsFilter::getFilterName($filtersValue['filter_id']);
+                                ?>
                             </td>
                             <td style="padding:5px; text-align:center">
                             {{ $filtersValue['filter_value']}}

@@ -29,6 +29,9 @@
                             Category
                         </th>
                         <th style="text-align:center">
+                            Category Image
+                        </th>
+                        <th style="text-align:center">
                             Parent Category
                         </th>
                         <th style="text-align:center">
@@ -57,6 +60,9 @@
                             </td>
                             <td style="padding:5px; text-align:center">
                             {{ $catagory['catagory_name']}}
+                            </td>
+                            <td style="padding:5px; text-align:center">
+                            <img  src="{{ asset('storage/admin/images/catagory-images/'.$catagory['catagory_image'])}}">
                             </td>
                             <td style="padding:5px; text-align:center">
                             {{ $parent_catagory }}

@@ -1,3 +1,5 @@
+<?php use App\Models\Catagory;
+?>
 @extends('admin.layout.layouts')
 
 @section('content')
@@ -57,7 +59,14 @@
                             {{ $filter['filter_column']}}
                             </td>
                             <td style="padding:5px; text-align:center">
-                            {{ $filter['cat_ids']}}
+                            <?php
+                            $catIds = explode(",",$filter['cat_ids']);
+                            foreach ($catIds as $key => $catId ){
+                                $catagory_name = Catagory::getCatagoryName($catId);
+                                echo $catagory_name. ",";
+                            }
+                            
+                            ?>
                             </td>
                             <td style="padding:5px; text-align:center">
                                 <!-- //for approving i need json,ajax,jquery -->

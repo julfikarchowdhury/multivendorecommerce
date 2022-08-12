@@ -50,13 +50,16 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::match(['get','post'],'add-edit-brand/{id?}','BrandController@addEditBrand');
         //catagories
         Route::get('catagories','CatagoryController@catagories');
-        //Route::post('update-catagory-status','CatagoryController@CatagoryStatus');
+                  //Route::post('update-catagory-status','CatagoryController@CatagoryStatus');
         Route::match(['get','post'],'add-edit-catagory/{id?}','CatagoryController@addEditCatagory');
         Route::get('append-catagories-level','CatagoryController@appendCatagoryLevel');
         Route::get('delete-catagory/{id}','CatagoryController@deleteCatagory');
-        //products
+        Route::get('delete-catagory-image/{id}','CatagoryController@deleteCatagoryImage');
+
+        //products 
         Route::get('products','ProductsController@products');
         Route::get('delete-product/{id}','ProductsController@deleteProduct');
+        Route::get('delete-product-image/{id}','ProductsController@deleteProductImage');
         Route::post('update-product-status','ProductsController@updateProductStatus');
         Route::match(['get','post'],'add-edit-product/{id?}','ProductsController@addEditProduct');
         //attributes
@@ -65,10 +68,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //filter
         Route::get('filters','FilterController@filters');
         Route::get('filter-value','FilterController@filterValue');
+        Route::match(['get','post'],'add-edit-filter/{id?}','FilterController@addEditFilter');
+        Route::match(['get','post'],'add-edit-filter-value/{id?}','FilterController@addEditFilterValue');
 
         //banners
         Route::get('banners','BannersController@banners');
         Route::get('delete-banner/{id}','BannersController@deleteBanners');
+        Route::get('delete-banner-image/{id}','BannersController@deleteBannersImage');
+
         Route::match(['get','post'],'add-edit-banner/{id?}','BannersController@addEditBanner');
 
 

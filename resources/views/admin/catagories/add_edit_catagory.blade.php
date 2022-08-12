@@ -27,18 +27,18 @@
               </div>
             </div>
           </div>
-            <div class="col-md-4 grid-margin stretch-card">
+            <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h3 style="text-align:center; padding-bottom: 20px; text-decoration: underline;" ><b>{{ $title }}</b> </h3>
-                        @if (session('status'))
+                        @if (session('success_message'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong> {{ session('status')}}</strong> 
+                                        <strong> {{ session('success_message')}}</strong> 
                                     </div>
                             @endif    
                         <form class="forms-sample" @if(empty($catagory['id'])) action="{{ url('admin/add-edit-catagory') }}"
                             @else action="{{ url('admin/add-edit-catagory/'.$catagory['id']) }}" @endif
-                            method="post" enctype="multipart/form">@csrf
+                            method="post" enctype="multipart/form-data">@csrf
                             
                             <div class="form-group">
                                 <label for="catagory_name" >Catagory Name</label>
@@ -64,7 +64,11 @@
                                 <input type="file" name="catagory_image" id="catagory_image" class="form-control"
                                 @if(!empty($catagory['catagory_image'])) value="{{ $catagory['catagory_image'] }}" 
                                 @else value="" @endif>
-                                    
+                                @if(!empty($catagory['catagory_image']))
+                                    <img style="height:50px; width:50px;" src="{{ asset('storage/admin/images/catagory-images/'.$catagory['catagory_image'])}}">&nbsp; &nbsp;
+                                    <a href="javascript:void(0)" class="confirmDelete" module="catagory-image" 
+                                    moduleid="{{$catagory['id'] }}">Delete Image</a>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="catagory_discount" >Catagory Discount</label>

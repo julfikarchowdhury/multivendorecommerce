@@ -2,11 +2,11 @@
 
 <div class="row product-container grid-style">
     @foreach($catagoryProducts as $product)
-    <div class="product-item col-lg-4 col-md-6 col-sm-6">
+    <div class=" col-lg-4 col-md-6 col-sm-6">
         <div class="item">
-            <div class="image-container">
-                <a class="item-img-wrapper-link" href="single-product.html">
-                    <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
+            <div class="image-container" style="height:230px; width:100%;">
+                <a class="item-img-wrapper-link" href="{{ url('product/'.$product['id']) }}">
+                    <img  src="{{ asset('storage/admin/images/product-images/'.$product['product_image'])}}" alt="Product">
                 </a>
                 <div class="item-action-behaviors">
                     <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
